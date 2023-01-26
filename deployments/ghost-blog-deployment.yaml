@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ghost-blog
+  name: ghost-blog-deployment
   namespace: blog
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: ghost-blog
@@ -19,27 +19,47 @@ spec:
         ports:
         - containerPort: 2368
         env:
-        - name: database__client
-          value: mysql
-        - name: database__connection__host
-          value: mysql-service
-        - name: database__connection__user
-          value: $(MYSQL_USER)
-        - name: database__connection__password
-          value: $(MYSQL_PASSWORD)
         - name: url
+          valueFrom:
+            configMapKeyRef:
+              name: ghost-config
+              key: url
+        - name: database__client
+          valueFrom:
+            secretKeyRef:
+              name: ghost-secrets
+              key: database__client
+        - name: database__connection__host
+          valueFrom:
+            secretKeyRef:
+              name: ghost-secrets
+              key: database__connection__host
+        - name: database__connection__user
+          valueFrom:
+            secretKeyRef:
+              name: ghost-secrets
+              key: database__connection__user
+        - name: database__connection__password
+          valueFrom:
+            secretKeyRef:
+              name: ghost-secrets
+              key: database__connection__password
+        - name: database__connection__database
+          valueFrom:
+            secretKeyRef:
+              name: ghost-secrets
+              key: database__connection__database
         resources:
           limits:
-            cpu: "0.5"
-            memory: "1Gi"
-          requests:
-            cpu: "0.1"
+            cpu: "200m"
             memory: "512Mi"
+          requests:
+            cpu: "100m"
+            memory: "256Mi"
         volumeMounts:
-        - name: ghost-persistent-storage
+        - name: ghost-data
           mountPath: /var/lib/ghost/content
       volumes:
-      - name: ghost-persistent-storage
+      - name: ghost-data
         persistentVolumeClaim:
-          claimName: ghost-pvc
-
+          claimName: ghost-data-pvc

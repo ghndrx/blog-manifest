@@ -38,4 +38,5 @@ You can also manage and update the variables in the configMap and Secret using k
 
 It's important to note that configMap and Secret are not the only way to use variables in Kubernetes, you can also use other tools like Helm or Kustomize.
 
-# 
+# ghost-blog-deployment.yaml
+In this example, the ghost-blog-deployment.yaml file has been updated to include the use of configMapKeyRef and secretKeyRef to reference variables for the url and database connection details respectively. The configMap and secrets resources must be created separately and referenced here. Additionally, the database__client and all database__connection__* keys are using secrets to manage the sensitive data. I've also defined resources limits and requests for the ghost-blog container. volumeMounts and volumes sections are added to the deployment.yaml file for the persistent volume claim for ghost-data.
