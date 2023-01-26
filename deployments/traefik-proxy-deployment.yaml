@@ -42,6 +42,6 @@ spec:
       - name: traefik-config
         persistentVolumeClaim:     
           claimName: traefik-pvc
-      -name: traefik-data
-      persistentVolumeClaim:
+      - name: traefik-data
+        persistentVolumeClaim:
           claimName: traefik-pvc
