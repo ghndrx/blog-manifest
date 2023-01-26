@@ -3,12 +3,14 @@ kind: PersistentVolume
 metadata:
   name: mysql-pv
   labels:
-    type: local
+    app: mysql
 spec:
-  storageClassName: manual
+  storageClassName: standard
   capacity:
-    storage: 1Gi
+    storage: 50Gi
   accessModes:
     - ReadWriteOnce
-  hostPath:
-    path: "/mnt/data/mysql"
+  gcePersistentDisk:
+    pdName: mysql-disk
+    fsType: ext4
+    

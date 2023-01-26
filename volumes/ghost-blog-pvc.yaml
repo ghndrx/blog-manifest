@@ -3,11 +3,11 @@ kind: PersistentVolumeClaim
 metadata:
   name: ghost-blog-pvc
   labels:
-    app: traefik
+    app: ghost-blog
 spec:
   storageClassName: standard
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi
+      storage: 50Gi
