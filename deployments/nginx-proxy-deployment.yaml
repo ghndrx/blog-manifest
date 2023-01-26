@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-proxy-deployment
+  labels:
+    name: nginx-proxy-deployment
+  spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx-proxy
+    spec:
+      restartPolicy: Always
+      containers:
+        - image: "jwilder/nginx-proxy"
+          name: "nginx-proxy"
+          ports:
+          - containerPort: 443
+          - containerPort: 80
+          env:
+          - name: GHOST_SVC
+            value: ghost
+          - name: CERTBOT_SVC
+            value: kubernetes-certbot
+          - name: HOSTNAME
+            value: blog.gregattempts.com
+          resources:
+            limits:
+              cpu: 200m
+              memory: 256Mi
+          volumeMounts:
+            - name: blog-gregattempts-net-cert
+              readOnly: true
+              mountPath: /etc/nginx/ssl
+          volumes:
+          - name: blog-gregattempts-cert
+            secret:
+              secretName: pv-blog-gregattempts.com
