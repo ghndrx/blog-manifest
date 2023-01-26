@@ -1,13 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql-service
-  namespace: blog
+  name: mysql
+  namespace: default
   labels:
     app: ghost
 spec:
-  selector:
-    app: ghost-blog
-    tier: mysql
   ports:
-  -    port: 3306
+    - port: 3306
+  selector:
+    app: ghost
+    tier: mysql
+  clusterIP: None
