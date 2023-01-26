@@ -18,6 +18,9 @@ spec:
         image: ghost:latest
         ports:
         - containerPort: 2368
+        volumeMounts:
+        - name: ghost-blog-data
+          mountPath: /var/lib/ghost/content
         env:
         - name: url
           valueFrom:
@@ -56,7 +59,5 @@ spec:
           requests:
             cpu: "100m"
             memory: "256Mi"
-        volumeMounts:
-        - name: ghost-blog-pv
-          mountPath: /var/lib/ghost/content
+
 
