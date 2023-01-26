@@ -11,3 +11,6 @@ spec:
   resources:
     requests:
       storage: 50Gi
+  gcePersistentDisk:
+    pdName: ghost-disk
+    fsType: ext4
