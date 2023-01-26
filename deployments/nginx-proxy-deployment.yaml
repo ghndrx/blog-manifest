@@ -5,11 +5,12 @@ metadata:
   labels:
     name: nginx-proxy-deployment
 spec:
-replicas: 1
-template:
+  selector:
+  replicas: 1
+  template:
     metadata:
       labels:
-        app: nginx-proxy
+        app: nginx-proxy-dep
     spec:
       restartPolicy: Always
       containers:
