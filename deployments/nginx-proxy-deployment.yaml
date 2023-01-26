@@ -32,9 +32,8 @@ spec:
               memory: 256Mi
           volumeMounts:
             - name: nginx-proxy-persistent-storage
-              readOnly: true
               mountPath: /etc/nginx/ssl
           volumes:
           - name: nginx-proxy-persistent-storage
-          persistentVolumeClaim:
+            persistentVolumeClaim:
             claimName: nginx-proxy-pvc
