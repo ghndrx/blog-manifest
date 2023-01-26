@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ghost-blog-deployment
+  name: ghost-blog
   namespace: blog
 spec:
   replicas: 1
