@@ -30,10 +30,10 @@ metadata:
               cpu: 200m
               memory: 256Mi
           volumeMounts:
-            - name: blog-gregattempts-net-cert
+            - name: nginx-proxy-persistent-storage
               readOnly: true
               mountPath: /etc/nginx/ssl
           volumes:
-          - name: blog-gregattempts-cert
-            secret:
-              secretName: pv-blog-gregattempts.com
+          - name: nginx-proxy-persistent-storage
+          persistentVolumeClaim:
+            claimName: nginx-proxy-pvc
