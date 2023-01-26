@@ -47,7 +47,7 @@ spec:
             memory: "512Mi"
             cpu: "500m"
       volumeMounts:
-      - mountPath: "/var/lib/mysql"
+      - mountPath: /var/lib/mysql
         name: mysql-storage
       volumes:
       - name: mysql-storage
