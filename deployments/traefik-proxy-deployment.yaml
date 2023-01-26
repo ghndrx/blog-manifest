@@ -40,10 +40,10 @@ spec:
         - --certificatesresolvers.myresolver.acme.storage=/data/traefik/acme.json
         
         
-      volumes:
-      - name: traefik-config
-        configMap:
-          name: traefik-config
-      - name: traefik-data
-        persistentVolumeClaim:
-          claimName: traefik-data
+      # volumes:
+      # - name: traefik-config
+      #   configMap:
+      #     name: traefik-config
+      # - name: traefik-data
+      #   persistentVolumeClaim:
+      #     claimName: traefik-data
