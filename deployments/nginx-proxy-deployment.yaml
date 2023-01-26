@@ -4,9 +4,9 @@ metadata:
   name: nginx-proxy-deployment
   labels:
     name: nginx-proxy-deployment
-  spec:
-  replicas: 1
-  template:
+spec:
+replicas: 1
+template:
     metadata:
       labels:
         app: nginx-proxy
