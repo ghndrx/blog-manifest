@@ -1,0 +1,24 @@
+# Build artifacts
+*.tar.gz
+*.tar
+*.zip
+
+# Temporary files
+*.tmp
+*.swp
+
+# Log files
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Kubernetes generated files
+*.out
+pods/
+services/
+deployments/
+replicasets/
+configmaps/
+secrets/
