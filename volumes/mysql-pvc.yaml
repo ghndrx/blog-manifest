@@ -2,6 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mysql-pvc
+  namespace: blog
   labels:
     app: mysql
 spec:
@@ -11,6 +12,4 @@ spec:
   resources:
     requests:
       storage: 50Gi
-  gcePersistentDisk:
-    pdName: mysql-disk
-    fsType: ext4
+  
