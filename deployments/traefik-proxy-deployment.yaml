@@ -40,8 +40,8 @@ spec:
         - --certificatesresolvers.myresolver.acme.storage=/data/traefik/acme.json
       volumes:
       - name: traefik-config
-        persistentVolumeClaim:     
+        persistentVolume:     
           claimName: traefik-pvc
       - name: traefik-data
-        persistentVolumeClaim:
-          claimName: traefik-pvc
+        persistentVolume:
+          claimName: traefik-pv
