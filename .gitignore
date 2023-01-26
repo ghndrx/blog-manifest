@@ -15,3 +15,4 @@
 Thumbs.db
 
 *-config-map.yaml
+*-secrets.yaml
