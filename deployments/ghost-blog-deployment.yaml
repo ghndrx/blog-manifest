@@ -1,8 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: ghost-blog-deployment
-  namespace: blog
+name: ghost-blog-deployment
+namespace: blog
 spec:
   replicas: 1
   selector:

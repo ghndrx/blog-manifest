@@ -3,15 +3,15 @@ kind: Deployment
 metadata:
   name: mysql-deployment
   namespace: blog
-  spec:
-    replicas: 1
+spec:
+  replicas: 1
   selector:
-    spec:
-      containers:
-      - name: mysql
-        image: mysql:8.0
-        ports:
-        - containerPort: 3306
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
     spec:
       containers:
       - name: mysql
