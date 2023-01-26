@@ -5,7 +5,7 @@ metadata:
   namespace: blog
 spec:
   selector:
-    app: ghost-blog
+    app: mysql
   ports:
   - name: mysql
     port: 3306
