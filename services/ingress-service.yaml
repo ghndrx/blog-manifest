@@ -1,36 +1,29 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-service
-  namespace: blog
+  name: ghost-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      proxy_set_header X-Real-IP $remote_addr;
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header X-Forwarded-Proto $scheme;
-      proxy_set_header Host $host;
-      proxy_pass_request_headers on;
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   rules:
-    - host: $(VAR_HOST)
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            pathRewrite: /ghost/
-            backend:
-              service:
-                name: ghost-blog-service
-                port:
-                  name: http
-                path: /
-  tls:
-    - hosts:
-        - $(VAR_HOST)
-      secretName: $(SECRET_NAME)
-
-      #In the ingress-service.yaml, the "secretName" field is used to specify the name of the Kubernetes Secret object that contains the TLS certificate and key that should be used for the ingress. The ingress controller will use this secret to terminate the HTTPS connection and encrypt the traffic. The value of the "secretName" field should be the name of the secret that contains the certificate and key.
-
-
-
+  - host: blog.gregattempts.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: ghost-blog
+            port:
+              number: 80
+  - host: blog.gregattempts.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: ghost-blog
+            port:
+              number: 80
