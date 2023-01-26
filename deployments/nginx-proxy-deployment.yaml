@@ -6,6 +6,8 @@ metadata:
     name: nginx-proxy-deployment
 spec:
   selector:
+    matchLabels:
+      app: nginx-proxy
   replicas: 1
   template:
     metadata:
