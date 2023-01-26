@@ -26,11 +26,11 @@ spec:
           limits:
             memory: "512Mi"
             cpu: "500m"
-        volumeMounts:
-        - name: traefik-config
-          mountPath: /etc/traefik
-        - name: traefik-data
-          mountPath: /data/traefik
+        # volumeMounts:
+        # - name: traefik-config
+        #   mountPath: /etc/traefik
+        # - name: traefik-data
+        #   mountPath: /data/traefik
         args:
         - --api
         - --entrypoints.web.address=:80
