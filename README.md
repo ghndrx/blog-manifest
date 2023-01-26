@@ -6,22 +6,32 @@ Prerequisites
 - A running Kubernetes cluster
 - The kubectl command-line tool installed on your local machine
 
-Deployment
+Workloads/Services/Secrets/ConfigMaps
+
 kubectl apply -f namespace.yaml
+
 kubectl apply -f blog-config-map.yaml
-kubectl apply -f deployments/ghost-blog-deployment.yaml
-kubectl apply -f deployments/mysql-deployment.yaml
-kubectl apply -f deployments/traefik-proxy-deployment.yaml
-kubectl apply -f services/ghost-blog-service.yaml
-kubectl apply -f services/LoadBalancer-traefik.yaml
-kubectl apply -f services/mysql-service.yaml
-kubectl apply -f services/traefik-proxy-service.yaml
+kubectl apply -f blog-secrets.yaml
+kubectl apply -f mysql-config-map.yaml
+kubectl apply -f mysql-secrets.yaml
+
 kubectl apply -f volumes/traefik-pv.yaml
 kubectl apply -f volumes/traefik-pvc.yaml
 kubectl apply -f volumes/mysql-pv.yaml
 kubectl apply -f volumes/mysql-pvc.yaml
 kubectl apply -f volumes/blog-pv.yaml
 kubectl apply -f volumes/blog-pvc.yaml
+
+kubectl apply -f deployments/ghost-blog-deployment.yaml
+kubectl apply -f deployments/mysql-deployment.yaml
+kubectl apply -f deployments/traefik-proxy-deployment.yaml
+
+kubectl apply -f services/ghost-blog-service.yaml
+kubectl apply -f services/mysql-service.yaml
+kubectl apply -f services/traefik-proxy-service.yaml
+
+kubectl apply -f services/LoadBalancer-traefik.yaml
+
 
 kubectl apply -f services/ingress-service.yaml
 
