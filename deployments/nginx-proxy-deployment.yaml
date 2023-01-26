@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        app: nginx-proxy-dep
+        app: nginx-proxy
     spec:
       restartPolicy: Always
       containers:
