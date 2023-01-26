@@ -7,6 +7,5 @@ spec:
   selector:
     app: ghost-blog
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 2368
+    - name: ghost-http
+      port: 2368
