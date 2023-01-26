@@ -36,4 +36,4 @@ spec:
       volumes:
         - name: nginx-proxy-persistent-storage
           persistentVolumeClaim:
-          claimName: nginx-proxy-pvc
+            claimName: nginx-proxy-pvc
