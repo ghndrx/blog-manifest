@@ -3,18 +3,15 @@ kind: Deployment
 metadata:
   name: mysql-deployment
   namespace: blog
-spec:
-  replicas: 1
+  spec:
+    replicas: 1
   selector:
-      app: ghost
-      tier: mysql
-  strategy:
-    type: Recreate
-  template:
-    metadata:
-      labels:
-        app: ghost
-        tier: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:8.0
+        ports:
+        - containerPort: 3306
     spec:
       containers:
       - name: mysql
