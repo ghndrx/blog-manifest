@@ -14,11 +14,3 @@
 .DS_Store
 Thumbs.db
 
-# Kubernetes generated files
-*.out
-pods/
-services/
-deployments/
-replicasets/
-configmaps/
-secrets/
