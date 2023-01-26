@@ -16,6 +16,7 @@ spec:
       containers:
       - name: ghost-blog
         image: ghost:latest
+             
         ports:
         - containerPort: 2368
         env:
@@ -30,10 +31,7 @@ spec:
               name: ghost-secrets
               key: database__client
         - name: database__connection__host
-          valueFrom:
-            secretKeyRef:
-              name: ghost-secrets
-              key: database__connection__host
+          value: mysql.blog.svc.cluster.local
         - name: database__connection__user
           valueFrom:
             secretKeyRef:
