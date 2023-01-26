@@ -26,7 +26,8 @@ kubectl apply -f services/ghost-blog-service.yaml
 kubectl apply -f services/mysql-service.yaml
 kubectl apply -f services/traefik-proxy-service.yaml
 
-kubectl apply -f services/LoadBalancer-traefik.yaml
+
+kubectl apply -f services/ingress-service.yaml
 
 kubectl apply -f ~/config-map_secrets/ghost-blog-config-map.yaml
 kubectl apply -f ~/config-map_secrets/ghost-blog-secrets.yaml
@@ -35,7 +36,6 @@ kubectl apply -f ~/config-map_secrets/mysql-secrets.yaml
 
 
 
-kubectl apply -f services/ingress-service.yaml
 
 This will create the necessary resources in the cluster, including a deployment for the Ghost app, a service for connecting to the MySQL server, and an ingress service for routing traffic to the Ghost app via the nginx-proxy with https and http.
 

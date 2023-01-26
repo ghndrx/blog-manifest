@@ -5,9 +5,8 @@ metadata:
   namespace: blog
 spec:
   selector:
-    app: mysql
+    app: ghost-blog
+    tier: mysql
   ports:
-  - name: mysql
-    port: 3306
-    targetPort: 3306
-  type: ClusterIP
+  -    port: 3306
+clusterIP: None
