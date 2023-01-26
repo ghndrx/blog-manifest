@@ -2,13 +2,11 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: ghost-data-pvc
+  namespace: blog
 spec:
+  storageClassName: standard
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 25Gi
-  storageClassName: standard
-  selector:
-    matchLabels:
-      app: ghost-blog

@@ -56,10 +56,10 @@ spec:
           requests:
             cpu: "100m"
             memory: "256Mi"
-      #   volumeMounts:
-      #   - name: ghost-data
-      #     mountPath: /var/lib/ghost/content
-      # volumes:
-      # - name: ghost-data
-      #   persistentVolumeClaim:
-      #     claimName: ghost-data-pvc
+        volumeMounts:
+        - name: ghost-data
+          mountPath: /var/lib/ghost/content
+      volumes:
+      - name: ghost-data
+        persistentVolumeClaim:
+          claimName: ghost-data-pvc
