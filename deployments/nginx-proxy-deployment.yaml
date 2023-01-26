@@ -34,6 +34,6 @@ spec:
             - name: nginx-proxy-persistent-storage
               mountPath: /etc/nginx/ssl
           volumes:
-          - name: nginx-proxy-persistent-storage
-            persistentVolumeClaim:
-            claimName: nginx-proxy-pvc
+            - name: nginx-proxy-persistent-storage
+              persistentVolumeClaim:
+              claimName: nginx-proxy-pvc
