@@ -18,9 +18,6 @@ spec:
         image: mysql:8.0
         ports:
         - containerPort: 3306
-        volumeMounts:
-        - name: mysql-storage
-          mountPath: /var/lib/mysql
         env:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
@@ -49,4 +46,10 @@ spec:
           limits:
             memory: "512Mi"
             cpu: "500m"
-    
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:     
+          claimName: mysql-pvc

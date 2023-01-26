@@ -18,9 +18,6 @@ spec:
         image: ghost:latest
         ports:
         - containerPort: 2368
-        volumeMounts:
-        - name: ghost-blog-content
-          mountPath: /var/lib/ghost/content
         env:
         - name: url
           valueFrom:
@@ -59,5 +56,10 @@ spec:
           requests:
             cpu: "100m"
             memory: "256Mi"
-
-
+        volumeMounts:
+        - name: ghost-blog-content
+          mountPath: /var/lib/ghost/content
+      volumes:
+      - name: ghost-blog-content
+        persistentVolumeClaim:     
+          claimName: ghost-blog-pvc
