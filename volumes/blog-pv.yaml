@@ -1,14 +1,13 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: ghost-blog-pv
-  labels:
-    type: local
+  name: ghost-data-pv
+  namespace: blog
 spec:
-  storageClassName: manual
   capacity:
-    storage: 1Gi
+    storage: 10Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/mnt/data/ghost-blog"
+    path: /data/ghost-data
+  persistentVolumeReclaimPolicy: Retain

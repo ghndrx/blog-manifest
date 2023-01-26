@@ -1,37 +1,38 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-proxy
+  name: nginx-proxy-manager
   namespace: blog
 spec:
   replicas: 1
   selector:
+    app: nginx-proxy
     matchLabels:
-      app: nginx-proxy
+      app: nginx-proxy-manager
   template:
     metadata:
       labels:
-        app: nginx-proxy
+        app: nginx-proxy-manager
     spec:
       containers:
-      - name: nginx-proxy
-        image: nginx:latest
-        ports:
-        - name: http
-          containerPort: 80
-        - name: https
-          containerPort: 443
-        resources:
-          limits:
-            cpu: 100m
-            memory: 128Mi
-          requests:
-            cpu: 50m
-            memory: 64Mi
-        volumeMounts:
-        - name: nginx-proxy-data
-          mountPath: /etc/nginx
+        - name: nginx-proxy-manager
+          image: jc21/nginx-proxy-manager:latest
+          ports:
+            - containerPort: 80
+              name: http
+            - containerPort: 443
+              name: https
+          volumeMounts:
+            - name: nginx-proxy-manager-data
+              mountPath: /data
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
       volumes:
-      - name: nginx-proxy-data
-        persistentVolumeClaim:
-          claimName: nginx-proxy-data-pvc
+        - name: nginx-proxy-manager-data
+          persistentVolumeClaim:
+            claimName: nginx-proxy-manager-pvc
