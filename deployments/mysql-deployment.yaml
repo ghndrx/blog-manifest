@@ -46,6 +46,6 @@ spec:
           limits:
             memory: "512Mi"
             cpu: "500m"
-      volumeMounts:
-      - mountPath: /var/lib/mysql
-        name: mysql-pv
+          volumeMounts:
+          - mountPath: /var/lib/mysql
+            name: mysql-pv

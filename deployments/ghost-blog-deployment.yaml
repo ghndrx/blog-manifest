@@ -56,7 +56,7 @@ spec:
           requests:
             cpu: "100m"
             memory: "256Mi"
-        volumeMounts:
-        - name: ghost-data
-          mountPath: /var/lib/ghost/content
+          volumeMounts:
+          - name: ghost-blog-pv
+            mountPath: /var/lib/ghost/content
 
