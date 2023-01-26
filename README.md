@@ -23,6 +23,7 @@ kubectl apply -f deployments/traefik-proxy-deployment.yaml
 kubectl apply -f services/ghost-blog-service.yaml
 kubectl apply -f services/mysql-service.yaml
 kubectl apply -f services/traefik-proxy-service.yaml
+gcloud compute disks create --size 50GB  ghost-disk traefik-disk mysql-disk
 
 kubectl apply -f services/LoadBalancer-traefik.yaml
 
