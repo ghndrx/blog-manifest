@@ -9,6 +9,5 @@ spec:
   selector:
     app: ghost-blog
     tier: mysql
-  clusterIP: None
   ports:
   -    port: 3306
