@@ -3,10 +3,10 @@ kind: Deployment
 metadata:
   name: ghost-blog
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: ghost-blog
-  replicas: 1
   template:
     metadata:
       labels:
@@ -14,19 +14,48 @@ spec:
     spec:
       containers:
       - name: ghost-blog
-        image: ghost:3
+        image: ghost:latest
         ports:
         - containerPort: 2368
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
         env:
         - name: database__client
           value: mysql
         - name: database__connection__host
-          value: mysql-service
+          value: mysql
         - name: database__connection__user
           value: ghost
         - name: database__connection__password
-          value: ghost
+          value: ghostpassword
         - name: database__connection__database
           value: ghost
-
-          
+      - name: nginx-proxy
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+        env:
+        - name: ghost-blog-nginx-proxy
+          value: ghost-blog
+        - name: ghost-blog-nginx-config
+          value: /etc/nginx/conf.d/default.conf
+        volumeMounts:
+        - name: ghost-blog-nginx-config-volume
+          mountPath: /etc/nginx/conf.d/
+      volumes:
+      - name: ghost-blog-nginx-config-volume
+        configMap:
+          name: ghost-blog-nginx-config

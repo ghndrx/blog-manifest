@@ -7,8 +7,9 @@ spec:
     app: ghost-blog
   ports:
   - name: http
-    port: 2368
+    port: 80
+    targetPort: 2368
+  - name: https
+    port: 443
     targetPort: 2368
   type: ClusterIP
-
-  
