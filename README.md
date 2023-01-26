@@ -22,3 +22,20 @@ ingress-service.yaml
 In this example, $(VAR_HOST) and $(SECRET_NAME) are variables that are stored in a configMap and a Secret, respectively. These variables can be managed and updated separately from the YAML files, making it easier to update and maintain your configuration.
 
 To use variables in your YAML files, you'll first need to create a configMap and a Secret that contains the variables you need. You can do this using the kubectl
+
+
+kubectl apply -f nginx-pv.yaml
+kubectl apply -f nginx-pvc.yaml
+kubectl apply -f mysql-pv.yaml
+kubectl apply -f mysql-pvc.yaml
+kubectl apply -f blog-pv.yaml
+kubectl apply -f blog-pvc.yaml
+
+kubectl apply -f ghost-blog-deployment.yaml
+kubectl apply -f mysql-deployment.yaml
+kubectl apply -f nginx-proxy-deployment.yaml
+kubectl apply -f ghost-blog-service.yaml
+kubectl apply -f ingress-service.yaml
+kubectl apply -f mysql-service.yaml
+kubectl apply -f nginx-proxy-service.yaml
+kubectl apply -f blog-config-map.yaml

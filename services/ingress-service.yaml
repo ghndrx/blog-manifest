@@ -29,3 +29,8 @@ spec:
     - hosts:
         - $(VAR_HOST)
       secretName: $(SECRET_NAME)
+
+      #In the ingress-service.yaml, the "secretName" field is used to specify the name of the Kubernetes Secret object that contains the TLS certificate and key that should be used for the ingress. The ingress controller will use this secret to terminate the HTTPS connection and encrypt the traffic. The value of the "secretName" field should be the name of the secret that contains the certificate and key.
+
+
+
