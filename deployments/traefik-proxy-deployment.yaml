@@ -19,12 +19,13 @@ spec:
         ports:
         - containerPort: 80
         - containerPort: 443
-        requests:
-          memory: "256Mi"
-          cpu: "250m"
-        limits:
-          memory: "512Mi"
-          cpu: "500m"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
         volumeMounts:
         - name: traefik-config
           mountPath: /etc/traefik
@@ -37,7 +38,7 @@ spec:
         - --certificatesresolvers.myresolver.acme.tlschallenge=true
         - --certificatesresolvers.myresolver.acme.email=example@example.com
         - --certificatesresolvers.myresolver.acme.storage=/data/traefik/acme.json
-        resources:
+        
         
       volumes:
       - name: traefik-config
