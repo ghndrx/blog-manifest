@@ -61,5 +61,5 @@ spec:
           mountPath: /var/lib/ghost/content
       volumes:
       - name: ghost-blog-content
-        persistentVolume:     
-          claimName: ghost-blog-pv
+        persistentVolumeClaim:     
+          claimName: ghost-blog-pvc
