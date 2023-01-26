@@ -31,7 +31,10 @@ spec:
               name: ghost-secrets
               key: database__client
         - name: database__connection__host
-          value: mysql.blog.svc.cluster.local
+          valueFrom:
+            secretKeyRef:
+              name: ghost-secrets
+              key: database__connection__host
         - name: database__connection__user
           valueFrom:
             secretKeyRef:
