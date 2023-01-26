@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ghost-blog
+  namespace: blog
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: ghost-blog
@@ -17,45 +18,28 @@ spec:
         image: ghost:latest
         ports:
         - containerPort: 2368
-        resources:
-          limits:
-            memory: "512Mi"
-            cpu: "500m"
-          requests:
-            memory: "256Mi"
-            cpu: "250m"
         env:
         - name: database__client
           value: mysql
         - name: database__connection__host
-          value: mysql
+          value: mysql-service
         - name: database__connection__user
-          value: ghost
+          value: $(MYSQL_USER)
         - name: database__connection__password
-          value: ghostpassword
-        - name: database__connection__database
-          value: ghost
-      - name: nginx-proxy
-        image: nginx:latest
-        ports:
-        - containerPort: 80
-        - containerPort: 443
+          value: $(MYSQL_PASSWORD)
+        - name: url
         resources:
           limits:
-            memory: "512Mi"
-            cpu: "500m"
+            cpu: "0.5"
+            memory: "1Gi"
           requests:
-            memory: "256Mi"
-            cpu: "250m"
-        env:
-        - name: ghost-blog-nginx-proxy
-          value: ghost-blog
-        - name: ghost-blog-nginx-config
-          value: /etc/nginx/conf.d/default.conf
+            cpu: "0.1"
+            memory: "512Mi"
         volumeMounts:
-        - name: ghost-blog-nginx-config-volume
-          mountPath: /etc/nginx/conf.d/
+        - name: ghost-persistent-storage
+          mountPath: /var/lib/ghost/content
       volumes:
-      - name: ghost-blog-nginx-config-volume
-        configMap:
-          name: ghost-blog-nginx-config
+      - name: ghost-persistent-storage
+        persistentVolumeClaim:
+          claimName: ghost-pvc
+
