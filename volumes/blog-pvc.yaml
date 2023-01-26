@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: blog-pvc
+  name: ghost-data-pvc
 spec:
   accessModes:
     - ReadWriteOnce
@@ -11,4 +11,4 @@ spec:
   storageClassName: standard
   selector:
     matchLabels:
-      app: blog
+      app: ghost-blog

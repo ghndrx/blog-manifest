@@ -52,4 +52,4 @@ spec:
       volumes:
       - name: mysql-data
         persistentVolumeClaim:
-          claimName: mysql-data-pvc
+          claimName: mysql-pv-disk
