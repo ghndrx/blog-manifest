@@ -24,8 +24,8 @@ kubectl apply -f services/traefik-proxy-service.yaml
 
 kubectl apply -f services/LoadBalancer-traefik.yaml
 
-kubectl apply -f blog-config-map.yaml
-kubectl apply -f blog-secrets.yaml
+kubectl apply -f ghost-blog-config-map.yaml
+kubectl apply -f ghost-blog-secrets.yaml
 kubectl apply -f mysql-config-map.yaml
 kubectl apply -f mysql-secrets.yaml
 
