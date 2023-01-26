@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ghost-blog
+spec:
+  selector:
+    matchLabels:
+      app: ghost-blog
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ghost-blog
+    spec:
+      containers:
+      - name: ghost-blog
+        image: ghost:3
+        ports:
+        - containerPort: 2368
+        env:
+        - name: database__client
+          value: mysql
+        - name: database__connection__host
+          value: mysql-service
+        - name: database__connection__user
+          value: ghost
+        - name: database__connection__password
+          value: ghost
+        - name: database__connection__database
+          value: ghost
+
+          
