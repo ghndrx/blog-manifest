@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ingress-service
+  namespace: blog
+spec:
+  selector:
+    app: ghost-blog
+  ports:
+  - name: http
+    port: 80
+    targetPort: 2368
+  - name: https
+    port: 443
+    targetPort: 2368
+  type: LoadBalancer
+  annotations:
+    # Enable SSL/TLS termination on the load balancer
+    service.beta.kubernetes.io/google-load-balancer-ssl-cert: "YOUR_SSL_CERT_NAME"
+    service.beta.kubernetes.io/google-load-balancer-backend-protocol: "HTTPS"
+    service.beta.kubernetes.io/google-load-balancer-frontend-protocol: "HTTPS"
