@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nginx-proxy-pvc
+  name: nginx-ingress-pvc
   namespace: blog
   labels:
-    app: nginx-proxy
+    app: nginx-ingress
 spec:
   storageClassName: standard
   accessModes:

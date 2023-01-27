@@ -4,7 +4,7 @@ metadata:
   name: nginx-pv
   namespace: blog
   labels:
-    app: nginx-proxy
+    app: nginx-ingress
 spec:
   storageClassName: standard
   capacity:
@@ -12,5 +12,5 @@ spec:
   accessModes:
     - ReadWriteOnce
   gcePersistentDisk:
-    pdName: nginx-proxy-disk
+    pdName: nginx-ingress-disk
     fsType: ext4
